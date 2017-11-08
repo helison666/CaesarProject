@@ -17,5 +17,4 @@ public class AdminPageGroupsTable {
     WebElement edit;
     WebElement delete;
 
-
 }
