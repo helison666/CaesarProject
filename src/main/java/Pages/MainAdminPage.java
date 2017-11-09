@@ -33,8 +33,6 @@ public class MainAdminPage {
     }
 
     private void init(WebDriver driver) {
-
-
     }
 
     public WebElement getMainLogoTitle() {
