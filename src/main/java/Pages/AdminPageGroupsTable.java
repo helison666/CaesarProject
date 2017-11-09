@@ -38,6 +38,7 @@ public class AdminPageGroupsTable extends MainAdminPage {
         this.stageTableColumn = driver.findElement(By.xpath("//*[@id=\"groups\"]/div/table/thead/tr/th[9]"));
         this.actionsTableColumn = driver.findElement(By.xpath("//*[@id=\"groups\"]/div/table/thead/tr/th[10]"));
 
+
         this.addGroupButton = driver.findElement(By.id("add-new-user"));
         this.editButton = driver.findElement(By.className("btn btn-info edit"));
         this.deleteButton = driver.findElement(By.className("btn btn-danger delete"));
