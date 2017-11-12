@@ -34,7 +34,7 @@ public class MainAdminPage {
 
     private void init(WebDriver driver) {
     }
-
+//asdasd
     public WebElement getMainLogoTitle() {
         return mainLogoTitle;
     }
