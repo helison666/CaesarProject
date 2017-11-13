@@ -70,4 +70,8 @@ public class MainAdminPageTest {
     }
 
 
+    @Test
+    public void sdfsdfd() {
+        driver.findElement(By.cssSelector("css=\"button[class*='btn-info']\"")).isEnabled();
+    }
 }
