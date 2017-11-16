@@ -19,7 +19,7 @@ public class MainAdminPageTest {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "D:/selenium/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://localhost:3000/admin");
         mainPage = new MainAdminPage(driver);

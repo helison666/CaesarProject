@@ -17,6 +17,7 @@ public class StudentsPage extends MainAdminPage {
     private WebElement headerEntryScore;
     private WebElement headerApprovedBy;
     private WebElement headerActions;
+    private WebElement addStudentBtn;
 
     //Конструктор
     public StudentsPage(WebDriver driver) {
@@ -32,6 +33,7 @@ public class StudentsPage extends MainAdminPage {
         this.headerEntryScore = driver.findElement((By.xpath("//*[@id=\"students\"]/div/table/thead/tr/th[7]")));
         this.headerApprovedBy = driver.findElement((By.xpath("//*[@id=\"students\"]/div/table/thead/tr/th[8]")));
         this.headerActions = driver.findElement((By.xpath("//*[@id=\"students\"]/div/table/thead/tr/th[9]")));
+        this.addStudentBtn = driver.findElement(By.xpath("//button[text()='Add student']"));
     }
 
     //Геттеры элементов
@@ -75,6 +77,10 @@ public class StudentsPage extends MainAdminPage {
     {
         return headerActions;
     }
+    public WebElement getAddStudentBtn()
+    {
+        return  addStudentBtn;
+    }
 
 
 
@@ -83,7 +89,6 @@ public class StudentsPage extends MainAdminPage {
     {
         return getHeading().getText();
     }
-
     public String getHeaderGroupIdText()
     {
         return getHeaderGroupId().getText();
