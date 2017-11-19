@@ -11,6 +11,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.testng.Assert.*;
 
 public class StudentsPageTest {
@@ -28,7 +30,7 @@ public class StudentsPageTest {
 
     @AfterMethod
     public void tearDown() throws Exception {
-        driver.quit();
+        //driver.quit();
     }
 
     @Test
@@ -59,5 +61,13 @@ public class StudentsPageTest {
         Assert.assertEquals(actual, expected);
     }
 
+    @Test
+    public void groupIdIsDisplayed() {
 
+            studPage.clickDeleteBtnNewStudent();
+
+    }
 }
+////*[@id="students"]/div/table/tbody/tr[10]/td[1]
+////*[@id="students"]/div/table/tbody/tr[10]/td[9]/button[1]
+////*[@id="students"]/div/table/tbody/tr[10]/td[9]/button[2]

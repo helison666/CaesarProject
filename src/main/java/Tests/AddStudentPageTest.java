@@ -54,29 +54,17 @@ public class AddStudentPageTest {
         Assert.assertTrue(addStudent.getCloseBtn().isDisplayed());
     }
 
-
     @Test
     public void setAddStudent() throws Exception
     {
-        ArrayList<String> studentExpected = addStudent.addStudent("GroupID", "Name", "LastName",
+        ArrayList<String> studentExpected = addStudent.addStudent("Groupid", "Name", "Lastname",
                 "Upper-intermediate","", "", "4","Ivanov");
-        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
         addStudent.getSubmitBtn().click();
-        ArrayList<String> studentActual = new ArrayList<String>();
-        for (int i = 0; i < 9; i++) {
-            if(i==0)
-            {
-                studentActual.add("");
-            }
-            else {
-                studentActual.add(driver.findElement(By.xpath("//*[@id=\"students\"]/div/table/tbody/tr[11]/td[" + i + "]")).getText());
-            }
-
-        }
-        for (int i = 0; i < studentActual.size(); i++) {
-            studentActual.get(i).equals(studentExpected.get(i));
-        }
+        ArrayList<String> studentActual = addStudent.getStudActual();
+        Assert.assertEquals(studentActual, studentExpected);
     }
-
 }
+
+////*[@id="students"]/div/table/tbody/tr[10]
 //addStudent.setChangeLanguage(ChangeEnglishLevelFields.INTERMEDIATE);

@@ -24,12 +24,6 @@ public class MainAdminPage {
         login();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("http://localhost:3000/admin");
-        this.mainLogoTitle = driver.findElement(By.xpath("/html/body/div[1]/h2"));
-        this.usersTab = driver.findElement(By.partialLinkText("users"));
-        this.groupsTab = driver.findElement(By.partialLinkText("group"));
-        this.studentsTab = driver.findElement(By.partialLinkText("students"));
-        this.homeButton = driver.findElement(By.xpath("/html/body/button"));
-
     }
 
     private void init(WebDriver driver) {
@@ -38,22 +32,27 @@ public class MainAdminPage {
     }
 
     public WebElement getMainLogoTitle() {
+        mainLogoTitle = driver.findElement(By.xpath("/html/body/div[1]/h2"));
         return mainLogoTitle;
     }
 
     public WebElement getUsersTab() {
+        usersTab = driver.findElement(By.partialLinkText("users"));
         return usersTab;
     }
 
     public WebElement getGroupsTab() {
+        groupsTab = driver.findElement(By.partialLinkText("group"));
         return groupsTab;
     }
 
     public WebElement getStudentsTab() {
+        studentsTab = driver.findElement(By.partialLinkText("students"));
         return studentsTab;
     }
 
     public WebElement getHomeButton() {
+        homeButton = driver.findElement(By.xpath("/html/body/button"));
         return homeButton;
     }
 

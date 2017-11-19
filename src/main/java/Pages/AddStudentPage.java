@@ -3,7 +3,10 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -51,66 +54,65 @@ public class AddStudentPage extends StudentsPage{
     public AddStudentPage(WebDriver driver) {
         super(driver);
         getAddStudentBtn().click();
-        this.groupIdField = driver.findElement(By.name("groupId"));
-        this.nameField = driver.findElement(By.name("name"));
-        this.lastNameField = driver.findElement(By.name("lastName"));
-        this.englishLevelField = new Select (driver.findElement(By.name("englishLevel")));
-        this.cvUrlField = driver.findElement(By.name("CvUrl"));
-        this.imageUrlField = driver.findElement(By.name("imageUrl"));
-        this.entryScoreField = driver.findElement(By.name("entryScore"));
-        this.approvedByField = driver.findElement(By.name("approvedBy"));
-        this.submitBtn = driver.findElement(By.xpath("//button[text()='Submit']"));
-        this.closeBtn = driver.findElement(By.xpath("//button[text()='Close']"));
-        this.xCloseBtn = driver.findElement(By.xpath("//button/span[text()='×']"));
-        this.headerAdd = driver.findElement(By.className("modal-title"));
-
     }
 
     public WebElement getGroupIdField()
     {
+        groupIdField = driver.findElement(By.name("groupId"));
         return groupIdField;
     }
     public WebElement getNameField()
     {
+        nameField = driver.findElement(By.name("name"));
         return nameField;
     }
     public WebElement getLastNameField()
     {
+        lastNameField = driver.findElement(By.name("lastName"));
         return lastNameField;
     }
     public Select getEnglishLevelField()
     {
+        englishLevelField = new Select (driver.findElement(By.name("englishLevel")));
         return englishLevelField;
     }
     public WebElement getCvUrlField()
     {
+        cvUrlField = driver.findElement(By.name("CvUrl"));
         return cvUrlField;
     }
     public WebElement getImageUrlField()
     {
+        imageUrlField = driver.findElement(By.name("imageUrl"));
         return imageUrlField;
     }
     public WebElement getEntryScoreField()
     {
+        entryScoreField = driver.findElement(By.name("entryScore"));
         return entryScoreField;
     }
     public WebElement getApprovedByField()
     {
+        approvedByField = driver.findElement(By.name("approvedBy"));
         return approvedByField;
     }
     public WebElement getSubmitBtn()
     {
+        submitBtn = driver.findElement(By.xpath("//button[text()='Submit']"));
         return submitBtn;
     }
     public WebElement getCloseBtn()
     {
+        closeBtn = driver.findElement(By.xpath("//button[text()='Close']"));
         return closeBtn;
     }
     public WebElement getxCloseBtn()
     {
+        xCloseBtn = driver.findElement(By.xpath("//button/span[text()='×']"));
         return xCloseBtn;
     }
     public WebElement getHeaderAdd(){
+        headerAdd = driver.findElement(By.className("modal-title"));
         return headerAdd;
     }
 
@@ -119,19 +121,25 @@ public class AddStudentPage extends StudentsPage{
     }
 
     public ArrayList<String> addStudent(String groupID, String name, String lastName, String englishLvl, String cvUrl,
-                                        String imgUrl, String entryScore, String approvedBy)
-    {
+                                        String imgUrl, String entryScore, String approvedBy) throws Exception {
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         getGroupIdField().sendKeys(groupID);
+        Thread.sleep(90);
         getNameField().sendKeys(name);
+        Thread.sleep(90);
         getLastNameField().sendKeys(lastName);
+        Thread.sleep(90);
         getEnglishLevelField().selectByValue(englishLvl);
+        Thread.sleep(90);
         getCvUrlField().sendKeys(cvUrl);
+        Thread.sleep(90);
         getImageUrlField().sendKeys(imgUrl);
+        Thread.sleep(90);
         getEntryScoreField().sendKeys(entryScore);
+        Thread.sleep(90);
         getApprovedByField().sendKeys(approvedBy);
 
         ArrayList<String> studentsList = new ArrayList<String>();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         studentsList.add("");
         studentsList.add(groupID);
         studentsList.add(name);
