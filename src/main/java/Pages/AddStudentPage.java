@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import static Pages.AddStudentPage.ChangeEnglishLevelFields.*;
+
 
 public class AddStudentPage extends StudentsPage{
 
@@ -25,6 +27,7 @@ public class AddStudentPage extends StudentsPage{
     private WebElement closeBtn;
     private WebElement xCloseBtn;
     private WebElement headerAdd;
+    Student student1 = new Student("DP-040-JS", "Petrick", "Cooler", "Intermediate","","", "100","Ivanov V.");
 
     public static enum ChangeEnglishLevelFields {
         ELEMENTERY("Elementary"),
@@ -120,7 +123,7 @@ public class AddStudentPage extends StudentsPage{
         getEnglishLevelField().selectByVisibleText(level.toString());
     }
 
-    public ArrayList<String> addStudent(String groupID, String name, String lastName, String englishLvl, String cvUrl,
+    /*public ArrayList<String> addStudent(String groupID, String name, String lastName, String englishLvl, String cvUrl,
                                         String imgUrl, String entryScore, String approvedBy) throws Exception {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         getGroupIdField().sendKeys(groupID);
@@ -149,6 +152,37 @@ public class AddStudentPage extends StudentsPage{
         studentsList.add(imgUrl);
         studentsList.add(entryScore);
         studentsList.add(approvedBy);
+
+        return studentsList;
+    }*/
+    public ArrayList<String> addStudent() throws Exception {
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        getGroupIdField().sendKeys(student1.getGroupID());
+        Thread.sleep(500);
+        getNameField().sendKeys(student1.getName());
+        Thread.sleep(500);
+        getLastNameField().sendKeys(student1.getLastName());
+        Thread.sleep(500);
+        getEnglishLevelField().selectByValue(student1.getEnglishLvl());
+        Thread.sleep(500);
+        getCvUrlField().sendKeys(student1.getCvUrl());
+        Thread.sleep(500);
+        getImageUrlField().sendKeys(student1.getImgUrl());
+        Thread.sleep(500);
+        getEntryScoreField().sendKeys(student1.getEntryScore());
+        Thread.sleep(500);
+        getApprovedByField().sendKeys(student1.getApprovedBy());
+
+        ArrayList<String> studentsList = new ArrayList<String>();
+        studentsList.add("");
+        studentsList.add(student1.getGroupID());
+        studentsList.add(student1.getName());
+        studentsList.add(student1.getLastName());
+        studentsList.add(student1.getEnglishLvl());
+        studentsList.add(student1.getCvUrl());
+        studentsList.add(student1.getImgUrl());
+        studentsList.add(student1.getEntryScore());
+        studentsList.add(student1.getApprovedBy());
 
         return studentsList;
     }

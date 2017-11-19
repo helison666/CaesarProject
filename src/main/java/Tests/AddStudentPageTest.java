@@ -57,8 +57,7 @@ public class AddStudentPageTest {
     @Test
     public void setAddStudent() throws Exception
     {
-        ArrayList<String> studentExpected = addStudent.addStudent("Groupid", "Name", "Lastname",
-                "Upper-intermediate","", "", "4","Ivanov");
+        ArrayList<String> studentExpected = addStudent.addStudent();
 
         addStudent.getSubmitBtn().click();
         ArrayList<String> studentActual = addStudent.getStudActual();
