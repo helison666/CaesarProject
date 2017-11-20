@@ -128,13 +128,14 @@ public class StudentsPage extends MainAdminPage {
     {
         return getHeaderActions().getText();
     }
+    public String getAddStudentBtnText(){ return getAddStudentBtn().getText();}
 
     public int getTrCount()
     {
         int countTr = 1;
         while (true)
         {
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             if(driver.findElements(By.xpath("//*[@id=\"students\"]/div/table/tbody/tr["+ countTr +"]/td[1]")).size() != 0)
             {
                countTr++;
@@ -152,7 +153,7 @@ public class StudentsPage extends MainAdminPage {
         int countTd = 1;
         while (true)
         {
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             if(driver.findElements(By.xpath("//*[@id=\"students\"]/div/table/tbody/tr[1]/td["+countTd+"]")).size() != 0 && !driver.findElement(By.xpath("//*[@id=\"students\"]/div/table/tbody/tr[1]/td["+countTd+"]")).getText().equals("EditDelete"))
             {
                 countTd++;
@@ -167,7 +168,7 @@ public class StudentsPage extends MainAdminPage {
     }
 
     public ArrayList<String> getStudActual(){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         int trNumber = getTrCount();
         int tdNumber = getTdCount();
 

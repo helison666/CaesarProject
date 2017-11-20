@@ -28,6 +28,7 @@ public class AddStudentPage extends StudentsPage{
     private WebElement xCloseBtn;
     private WebElement headerAdd;
     Student student1 = new Student("DP-040-JS", "Petrick", "Cooler", "Intermediate","","", "100","Ivanov V.");
+    Student student2 = new Student("DP-045-JS", "Vasya", "Buffer", "Intermediate","","", "146","Ivanov V.");
 
     public static enum ChangeEnglishLevelFields {
         ELEMENTERY("Elementary"),
@@ -57,6 +58,7 @@ public class AddStudentPage extends StudentsPage{
     public AddStudentPage(WebDriver driver) {
         super(driver);
         getAddStudentBtn().click();
+        //this.closeBtn = driver.findElement(By.xpath("//button[text()='Close']"));
     }
 
     public WebElement getGroupIdField()
@@ -106,16 +108,25 @@ public class AddStudentPage extends StudentsPage{
     }
     public WebElement getCloseBtn()
     {
+
         closeBtn = driver.findElement(By.xpath("//button[text()='Close']"));
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.visibilityOf(closeBtn));
+
         return closeBtn;
     }
     public WebElement getxCloseBtn()
     {
+
         xCloseBtn = driver.findElement(By.xpath("//button/span[text()='×']"));
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.visibilityOf(xCloseBtn));
         return xCloseBtn;
     }
     public WebElement getHeaderAdd(){
         headerAdd = driver.findElement(By.className("modal-title"));
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.visibilityOf(headerAdd));
         return headerAdd;
     }
 
@@ -183,6 +194,46 @@ public class AddStudentPage extends StudentsPage{
         studentsList.add(student1.getImgUrl());
         studentsList.add(student1.getEntryScore());
         studentsList.add(student1.getApprovedBy());
+
+        return studentsList;
+    }
+    public ArrayList<String> editStudent() throws Exception {
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.visibilityOf(getGroupIdField()));
+        getGroupIdField().clear();
+        getGroupIdField().sendKeys(student2.getGroupID());
+        Thread.sleep(500);
+        getNameField().clear();
+        getNameField().sendKeys(student2.getName());
+        Thread.sleep(500);
+        getLastNameField().clear();
+        getLastNameField().sendKeys(student2.getLastName());
+        Thread.sleep(500);
+        getEnglishLevelField().selectByValue(student2.getEnglishLvl());
+        Thread.sleep(500);
+        getCvUrlField().clear();
+        getCvUrlField().sendKeys(student2.getCvUrl());
+        Thread.sleep(500);
+        getImageUrlField().clear();
+        getImageUrlField().sendKeys(student2.getImgUrl());
+        Thread.sleep(500);
+        getEntryScoreField().clear();
+        getEntryScoreField().sendKeys(student2.getEntryScore());
+        Thread.sleep(500);
+        getApprovedByField().clear();
+        getApprovedByField().sendKeys(student2.getApprovedBy());
+
+        ArrayList<String> studentsList = new ArrayList<String>();
+        studentsList.add("");
+        studentsList.add(student2.getGroupID());
+        studentsList.add(student2.getName());
+        studentsList.add(student2.getLastName());
+        studentsList.add(student2.getEnglishLvl());
+        studentsList.add(student2.getCvUrl());
+        studentsList.add(student2.getImgUrl());
+        studentsList.add(student2.getEntryScore());
+        studentsList.add(student2.getApprovedBy());
 
         return studentsList;
     }

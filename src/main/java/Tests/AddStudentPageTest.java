@@ -1,9 +1,6 @@
 package Tests;
 
 import Pages.AddStudentPage;
-import Pages.AddStudentPage.ChangeEnglishLevelFields;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -12,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
+
 
 public class AddStudentPageTest {
 
@@ -31,7 +28,7 @@ public class AddStudentPageTest {
         driver.quit();
     }
 
-    @Test
+    @Test(priority = 1)
     public void getHeaderAddPage()
     {
         String expected = "Create/Edit students";
@@ -40,21 +37,21 @@ public class AddStudentPageTest {
         Assert.assertEquals(actual, expected);
     }
 
-    @Test
-    public void clickXCloseBtn()
+    @Test(priority = 2)
+    public void clickXCloseBtn() throws Exception
     {
         addStudent.getxCloseBtn().click();
         Assert.assertTrue(addStudent.getxCloseBtn().isDisplayed());
     }
 
-    @Test
+    @Test(priority = 3)
     public void clickCloseBtn()
     {
         addStudent.getCloseBtn().click();
         Assert.assertTrue(addStudent.getCloseBtn().isDisplayed());
     }
 
-    @Test
+    @Test(priority = 4)
     public void setAddStudent() throws Exception
     {
         ArrayList<String> studentExpected = addStudent.addStudent();
@@ -63,7 +60,27 @@ public class AddStudentPageTest {
         ArrayList<String> studentActual = addStudent.getStudActual();
         Assert.assertEquals(studentActual, studentExpected);
     }
-}
 
-////*[@id="students"]/div/table/tbody/tr[10]
-//addStudent.setChangeLanguage(ChangeEnglishLevelFields.INTERMEDIATE);
+    @Test(priority = 5)
+    public void editNewStudent() throws Exception
+    {
+        addStudent.getCloseBtn().click();
+        addStudent.clickEditBtnNewStudent();
+        ArrayList<String> studentExpected = addStudent.editStudent();
+
+        addStudent.getSubmitBtn().click();
+        ArrayList<String> studentActual = addStudent.getStudActual();
+        Assert.assertEquals(studentActual, studentExpected);
+    }
+
+    @Test(priority = 6)
+    public void deleteNewStudent() throws Exception
+    {
+        addStudent.getCloseBtn().click();
+        int firstCountTr = addStudent.getTrCount();
+        addStudent.clickDeleteBtnNewStudent();
+        int afterCountTr = addStudent.getTrCount();
+
+        Assert.assertNotEquals(firstCountTr, afterCountTr);
+    }
+}
