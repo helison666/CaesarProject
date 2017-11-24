@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class StudentsPage extends MainAdminPage {
+public class StudentsPage extends MainAdminPage{
 
     //Элементы
     private WebElement headingText;
@@ -25,7 +25,6 @@ public class StudentsPage extends MainAdminPage {
     //Конструктор
     public StudentsPage(WebDriver driver) {
         super(driver);
-        getStudentsTab().click();
     }
 
     //Геттеры элементов

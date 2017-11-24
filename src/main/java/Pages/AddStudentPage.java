@@ -10,10 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import static Pages.AddStudentPage.ChangeEnglishLevelFields.*;
 
-
-public class AddStudentPage extends StudentsPage{
+public class AddStudentPage extends StudentsPage {
 
     private WebElement groupIdField;
     private WebElement nameField;
@@ -57,8 +55,6 @@ public class AddStudentPage extends StudentsPage{
 
     public AddStudentPage(WebDriver driver) {
         super(driver);
-        getAddStudentBtn().click();
-        //this.closeBtn = driver.findElement(By.xpath("//button[text()='Close']"));
     }
 
     public WebElement getGroupIdField()
@@ -134,38 +130,7 @@ public class AddStudentPage extends StudentsPage{
         getEnglishLevelField().selectByVisibleText(level.toString());
     }
 
-    /*public ArrayList<String> addStudent(String groupID, String name, String lastName, String englishLvl, String cvUrl,
-                                        String imgUrl, String entryScore, String approvedBy) throws Exception {
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        getGroupIdField().sendKeys(groupID);
-        Thread.sleep(90);
-        getNameField().sendKeys(name);
-        Thread.sleep(90);
-        getLastNameField().sendKeys(lastName);
-        Thread.sleep(90);
-        getEnglishLevelField().selectByValue(englishLvl);
-        Thread.sleep(90);
-        getCvUrlField().sendKeys(cvUrl);
-        Thread.sleep(90);
-        getImageUrlField().sendKeys(imgUrl);
-        Thread.sleep(90);
-        getEntryScoreField().sendKeys(entryScore);
-        Thread.sleep(90);
-        getApprovedByField().sendKeys(approvedBy);
 
-        ArrayList<String> studentsList = new ArrayList<String>();
-        studentsList.add("");
-        studentsList.add(groupID);
-        studentsList.add(name);
-        studentsList.add(lastName);
-        studentsList.add(englishLvl);
-        studentsList.add(cvUrl);
-        studentsList.add(imgUrl);
-        studentsList.add(entryScore);
-        studentsList.add(approvedBy);
-
-        return studentsList;
-    }*/
     public ArrayList<String> addStudent() throws Exception {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         getGroupIdField().sendKeys(student1.getGroupID());
@@ -198,7 +163,6 @@ public class AddStudentPage extends StudentsPage{
         return studentsList;
     }
     public ArrayList<String> editStudent() throws Exception {
-        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         WebDriverWait wait = new WebDriverWait(driver, 100);
         wait.until(ExpectedConditions.visibilityOf(getGroupIdField()));
         getGroupIdField().clear();

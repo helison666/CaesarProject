@@ -1,134 +1,170 @@
 package Tests;
 
 
-import Pages.AddStudentPage;
+import Data.*;
+import Pages.LoginPage;
+import Pages.MainAdminPage;
 import Pages.StudentsPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
 
 
 public class StudentsPageTest {
 
-    StudentsPage studPage;
-    WebDriver driver;
+    
+    StudentsPage studentsPage;
+    Application application;
 
-    @BeforeMethod
-    public void setUp() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("http://localhost:3000/admin");
-        studPage = new StudentsPage(driver);
-    }
-
-    @AfterMethod
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
-
-    @Test
-    public void HeadText()
+    public void clickStudentTab(ApplicationSources applicationSources, IUser adminUser) throws Exception
     {
+        application = Application.get(applicationSources);
+        //
+        // Steps
+        LoginPage loginPage = application.load();
+
+        MainAdminPage adminHomePage = loginPage.successAdminLogin(adminUser);
+        Thread.sleep(1000);
+        application.loadAdminPage();
+
+        studentsPage = new StudentsPage(application.getDriver());
+        studentsPage.studentsTabClick();
+    }
+
+
+    @DataProvider
+    public Object[][] getApplicationSources() {
+        return new Object[][] {
+                /*{ ApplicationSourcesRepository.getFirefoxHerokuApplication(),
+                        UserRepository.get().getLogin(),
+                },
+*/
+                { ApplicationSourcesRepository.getChromeHerokuApplication(),
+                        UserRepository.get().getLogin(),
+
+                },
+        };
+    }
+
+    @Test(dataProvider = "getApplicationSources")
+    public void HeadText(ApplicationSources applicationSources, IUser adminUser) throws Exception
+    {
+        clickStudentTab(applicationSources, adminUser);
         String expected = "Caesar Admin Panel";
         String actual;
-        actual = studPage.getHeadingText();
+        actual = studentsPage.getHeadingText();
         Assert.assertEquals(actual, expected);
+        application.quit();
     }
 
-    @Test
-    public void HeaderGroupIdText()
+    @Test(dataProvider = "getApplicationSources")
+    public void HeaderGroupIdText(ApplicationSources applicationSources, IUser adminUser) throws Exception
     {
+        clickStudentTab(applicationSources, adminUser);
         String expected = "groupId";
         String actual;
-        actual = studPage.getHeaderGroupIdText();
+        actual = studentsPage.getHeaderGroupIdText();
         Assert.assertEquals(actual, expected);
+        application.quit();
     }
 
-    @Test
-    public void HeaderNameText()
+    @Test(dataProvider = "getApplicationSources")
+    public void HeaderNameText(ApplicationSources applicationSources, IUser adminUser) throws Exception
     {
+        clickStudentTab(applicationSources, adminUser);
         String expected = "name";
         String actual;
-        actual = studPage.getHeaderNameText();
+        actual = studentsPage.getHeaderNameText();
         Assert.assertEquals(actual, expected);
+        application.quit();
     }
 
-    @Test
-    public void HeaderLastNameText()
+    @Test(dataProvider = "getApplicationSources")
+    public void HeaderLastNameText(ApplicationSources applicationSources, IUser adminUser) throws Exception
     {
+        clickStudentTab(applicationSources, adminUser);
         String expected = "lastName";
         String actual;
-        actual = studPage.getHeaderLastNameText();
+        actual = studentsPage.getHeaderLastNameText();
         Assert.assertEquals(actual, expected);
+        application.quit();
     }
 
-    @Test
-    public void HeaderEnglishLvlText()
+    @Test(dataProvider = "getApplicationSources")
+    public void HeaderEnglishLvlText(ApplicationSources applicationSources, IUser adminUser) throws Exception
     {
+        clickStudentTab(applicationSources, adminUser);
         String expected = "englishLevel";
         String actual;
-        actual = studPage.getHeaderEnglishLevelText();
+        actual = studentsPage.getHeaderEnglishLevelText();
         Assert.assertEquals(actual, expected);
+        application.quit();
     }
 
-    @Test
-    public void HeaderCvUrlText()
+    @Test(dataProvider = "getApplicationSources")
+    public void HeaderCvUrlText(ApplicationSources applicationSources, IUser adminUser) throws Exception
     {
+        clickStudentTab(applicationSources, adminUser);
         String expected = "CvUrl";
         String actual;
-        actual = studPage.getHeaderCvUrlText();
+        actual = studentsPage.getHeaderCvUrlText();
         Assert.assertEquals(actual, expected);
+        application.quit();
     }
 
-    @Test
-    public void HeaderImageUrlText()
+    @Test(dataProvider = "getApplicationSources")
+    public void HeaderImageUrlText(ApplicationSources applicationSources, IUser adminUser) throws Exception
     {
+        clickStudentTab(applicationSources, adminUser);
         String expected = "imageUrl";
         String actual;
-        actual = studPage.getHeaderImageUrlText();
+        actual = studentsPage.getHeaderImageUrlText();
         Assert.assertEquals(actual, expected);
+        application.quit();
     }
 
-    @Test
-    public void HeaderEntryScoreText()
+    @Test(dataProvider = "getApplicationSources")
+    public void HeaderEntryScoreText(ApplicationSources applicationSources, IUser adminUser) throws Exception
     {
+        clickStudentTab(applicationSources, adminUser);
         String expected = "entryScore";
         String actual;
-        actual = studPage.getHeaderEntryScoreText();
+        actual = studentsPage.getHeaderEntryScoreText();
         Assert.assertEquals(actual, expected);
+        application.quit();
     }
 
-    @Test
-    public void HeaderApprovedByText()
+    @Test(dataProvider = "getApplicationSources")
+    public void HeaderApprovedByText(ApplicationSources applicationSources, IUser adminUser) throws Exception
     {
+        clickStudentTab(applicationSources, adminUser);
         String expected = "approvedBy";
         String actual;
-        actual = studPage.getHeaderApprovedByText();
+        actual = studentsPage.getHeaderApprovedByText();
         Assert.assertEquals(actual, expected);
+        application.quit();
     }
 
-    @Test
-    public void HeaderActionsText()
+    @Test(dataProvider = "getApplicationSources")
+    public void HeaderActionsText(ApplicationSources applicationSources, IUser adminUser) throws Exception
     {
+        clickStudentTab(applicationSources, adminUser);
         String expected = "actions";
         String actual;
-        actual = studPage.getHeaderActionsText();
+        actual = studentsPage.getHeaderActionsText();
         Assert.assertEquals(actual, expected);
+        application.quit();
     }
 
-    @Test
-    public void AddStudentBtnText()
+    @Test(dataProvider = "getApplicationSources")
+    public void AddStudentBtnText(ApplicationSources applicationSources, IUser adminUser) throws Exception
     {
+        clickStudentTab(applicationSources, adminUser);
         String expected = "Add student";
         String actual;
-        actual = studPage.getAddStudentBtnText();
+        actual = studentsPage.getAddStudentBtnText();
         Assert.assertEquals(actual, expected);
+        application.quit();
     }
-
 
 }

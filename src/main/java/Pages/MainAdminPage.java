@@ -3,64 +3,56 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.concurrent.TimeUnit;
 
 public class MainAdminPage {
 
-    public WebDriver driver = null;
+    protected WebDriver driver;
+
+    private WebElement mainLogoTitle;
+    private WebElement usersTab;
+    private WebElement groupsTab;
+    private WebElement studentsTab;
+    private WebElement homeButton;
+    private WebElement addNewUserButton;
 
 
-    WebElement mainLogoTitle;
-    WebElement usersTab;
-    WebElement groupsTab;
-    WebElement studentsTab;
-    WebElement homeButton;
+
+
 
 
     public MainAdminPage(WebDriver driver) {
         this.driver = driver;
-        login();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.get("http://localhost:3000/admin");
     }
 
-    private void init(WebDriver driver) {
-
+    public MainAdminPage() {
 
     }
 
     public WebElement getMainLogoTitle() {
-        mainLogoTitle = driver.findElement(By.xpath("/html/body/div[1]/h2"));
-        return mainLogoTitle;
+        return  this.mainLogoTitle = driver.findElement(By.xpath("/html/body/div[1]/h2"));
     }
 
     public WebElement getUsersTab() {
-        usersTab = driver.findElement(By.partialLinkText("users"));
-        return usersTab;
+        return this.usersTab = driver.findElement(By.partialLinkText("users"));
     }
 
     public WebElement getGroupsTab() {
-        groupsTab = driver.findElement(By.partialLinkText("group"));
-        return groupsTab;
+        return this.groupsTab = driver.findElement(By.partialLinkText("group"));
     }
 
     public WebElement getStudentsTab() {
-        studentsTab = driver.findElement(By.partialLinkText("students"));
-        return studentsTab;
+        return this.studentsTab = driver.findElement(By.cssSelector("body > div.container > ul > li:nth-child(3) > a"));
     }
 
     public WebElement getHomeButton() {
-        homeButton = driver.findElement(By.xpath("/html/body/button"));
-        return homeButton;
+        return this.homeButton = driver.findElement(By.xpath("/html/body/button"));
     }
 
-    public void login(){
-        driver.findElement(By.name("login")).sendKeys("dmytro");
-        driver.findElement(By.name("password")).sendKeys("1234");
-        driver.findElement(By.className("submit ")).click();
+    public WebElement getAddNewUserButton() {
+        return this.addNewUserButton = driver.findElement(By.id("add-new-user"));
     }
+
+
 
     public void  usersTabClick(){
         getUsersTab().click();
@@ -77,5 +69,19 @@ public class MainAdminPage {
     public void  homeButtonbClick(){
         getHomeButton().click();
     }
+
+    public void  clickAddUser(){
+        getAddNewUserButton().click();
+    }
+
+    public String  getTextclickAddUser(){
+        return getAddNewUserButton().getText();
+    }
+
+    public void getUser(){
+
+    }
+
+
 
 }
